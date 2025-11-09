@@ -1,4 +1,4 @@
-const domain = 'http://movemo-marcas.test/wp-json' 
+const domain = 'https://admin.movemosmarcas.com/wp-json' 
 const nameSpace = '/headless-api/v1'
 
 const ROUTES = {
