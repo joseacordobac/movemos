@@ -1,0 +1,63 @@
+---
+import {getMenu} from '../../../services/menuServices'
+import './nav.css'
+const currentPath = Astro.url.pathname;
+const {name, type = 'header'} = Astro.props
+const menu = await getMenu(name);
+
+---
+
+<nav class=`m-nav m-nav--${type}`>
+    <div class="m-nav-hamburger">
+        <span class="m-nav-hamburger__line m-nav-hamburger__line--first"></span>
+        <span class="m-nav-hamburger__line m-nav-hamburger__line--second"></span>
+        <span class="m-nav-hamburger__line m-nav-hamburger__line--third"></span>
+    </div>
+    <div class="m-nav__content">
+        {menu.map(item=>{
+       
+            const isActive = currentPath === item.url || item.child_items.some(child => child.url === currentPath);
+            const activeClass = isActive ? 'm-nav-item__route--active' : '';
+            
+            return(
+                <div class={"m-nav-item " + activeClass}>
+                    <a 
+                        href={item.url} 
+                        class={`m-nav-item__route`}>
+                            {item.title}
+                    </a>
+                    {(item.child_items.length > 0 && type === 'header') && (                    
+                    <div class="m-nav-item__submenu">
+                        {item.child_items.map(child => {
+
+                            return (<a class={' m-nav-item__submenu-item'} href={child.url}>{child.title}</a>)
+                            
+                        })}
+                    </div>
+                    )}
+                </div>
+                )
+            }
+        )}
+    </div>
+</nav>
+
+<script>
+    const menuInit =() => {
+
+        const getHamburger = document.querySelector('.m-nav-hamburger');
+        const getNav = document.querySelector('.m-nav');
+
+        if(!getHamburger || !getNav) return;
+
+        getHamburger.addEventListener('click', () => {
+            getNav.classList.toggle('m-nav--active');
+        })
+
+    }
+
+    menuInit()
+
+    document.addEventListener("astro:after-swap", menuInit)
+</script>
+

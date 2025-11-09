@@ -1,0 +1,11 @@
+---
+import {getOptionPage} from '../../../services/optionPageServices'
+
+const {general_options} = await getOptionPage();
+import './logo.css'
+
+---
+
+<a class="a-logo logo-brillo-container" href="/" >
+    <img src={general_options.logo} alt="Logo Evolucione" class="a-logo__img a-logo__img--header" title="Evolucione">
+</s>

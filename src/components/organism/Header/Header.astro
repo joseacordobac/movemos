@@ -1,0 +1,29 @@
+---
+import Logo from "../../atoms/logo/Logo.astro"
+import Nav from "../../molecules/Nav/Nav.astro"
+import BtnWhatsApp from "../../atoms/BtnWhatsApp/BtnWhatsApp.astro"
+import './header.css'
+
+const {headerType} = Astro.props
+
+---
+
+<header class={"o-header" + (headerType ? ` o-header--${headerType}` : '')}>
+    <div class="o-header__content">
+        <div class="o-header__logo"><Logo type={headerType} /></div>
+        <div class="o-header__cta">
+            <div class="o-header__nav"><Nav name="nav-main"/></div>
+            <BtnWhatsApp text="Escríbenos" type="tiny" />
+        </div>
+    </div>
+</header>
+
+<script is:inline >
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 30) {
+            document.querySelector('.o-header').classList.add('o-header--intop');
+        } else {
+            document.querySelector('.o-header').classList.remove('o-header--intop');
+        }
+    })
+</script>

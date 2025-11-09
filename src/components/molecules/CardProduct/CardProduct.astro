@@ -1,0 +1,42 @@
+---
+import ImagenSlider from "../../atoms/ImageSlider/ImagenSlider.astro"
+import {formatPrice} from "../../../utilities/formatPrices"
+import './cardproduct.css'
+
+const {data, type} = Astro.props
+const {
+    ID, 
+    slug, 
+    title, 
+    fields,
+    featured_image,
+    caracteristicas
+} = data
+
+const {product_data, properties_info} = fields 
+let precios = product_data?.price
+
+const price = formatPrice(precios)
+const productRoute = type === "importados" ? "importacion-rr" : type
+
+---
+
+<article class="m-cardproduct flash-element">
+    <a href={productRoute + '/' + slug} class="m-cardproduct__anchor">
+        <header class="m-cardproduct__imagenes">
+            <ImagenSlider imagesList={product_data?.Gallery} featuredImagen={featured_image} postId={ID} />
+        </header>
+        <div class="m-cardproduct__body">
+            <h3 class="m-cardproduct__body-title">{title}</h3>
+            <h2 class="m-cardproduct__body-price">{price}</h2>
+            {
+                type != 'propiedades' && 
+                <footer class="m-cardproduct__footer">
+                    <span class="m-cardproducto__footer-info m-cardproducto__footer-info--year">{caracteristicas[0].name} KM</span>
+                    <span class="m-cardproducto__footer-info m-cardproducto__footer-info--km">{product_data.kilometros} KM</span>
+                    <span class="m-cardproducto__footer-info m-cardproducto__footer-info--motor">{product_data.motor}</span>
+                </footer>
+            }
+        </div>
+    </a>
+</article>

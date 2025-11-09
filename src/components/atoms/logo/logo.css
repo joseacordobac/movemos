@@ -1,0 +1,24 @@
+.a-logo {
+    display: inline-block;
+}
+
+.a-logo__img {
+    width: 300px;
+    height: 70px;
+    transition: 0.35s;
+}
+
+@keyframes brillo-desliza {
+    0% {
+        transform: translateX(0); 
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-200%);
+        opacity: 0.5;
+    }
+}

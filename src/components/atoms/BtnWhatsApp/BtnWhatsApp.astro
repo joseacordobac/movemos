@@ -1,0 +1,14 @@
+---
+
+import {getOptionPage} from '../../../services/optionPageServices'
+import './btnwhatsapp.css'
+
+const dataOptions = await getOptionPage()
+const options = dataOptions.general_options 
+const whatsAppLink = `https://wa.me/${options.num_whatsapp}/?text=${options.text_whatsapp}`;
+
+const {text = 'Escribenos', type='normal'} = Astro.props
+
+---
+
+<a href={whatsAppLink} target='_blank' class={"a-btnwhatsapp" + " a-btnwhatsapp--" + type}>{text}</a>

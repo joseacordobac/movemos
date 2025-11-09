@@ -1,0 +1,19 @@
+---
+import Chip from "../../atoms/chip/Chip.astro"
+import './searcher.css'
+---
+
+<div class="m-searcher">
+    <form class="m-searcher-content">
+        <div class="m-searcher-tags">
+            <Chip text="Importados" name="list" value="importados" checked = {true} />
+            <Chip text="Usados" name="list" value="usados" />
+            <Chip text="RR prestige" name="list" value="rr-prestige"/>
+            <Chip text="Propiedades" isNew={true} name="list"  value="propiedades" />
+        </div>
+        <div class="m-searcher-input">
+            <input type="text" placeholder="Buscar" class="m-searcher-input__tex">
+            <button type="button" class="m-searcher-input__btn">Buscar</button>
+        </div>
+    </form>
+</div>

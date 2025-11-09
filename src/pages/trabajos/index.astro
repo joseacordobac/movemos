@@ -1,0 +1,17 @@
+---
+import HeroTitle from '../../components/organism/HeroTitle/HeroTitle.astro';
+import Layout from '../../layouts/Layout.astro';
+import {getPages} from '../../services/pages'
+
+const pages = await getPages('home');
+const content =pages[0].fields.contenido
+
+const components = {
+  'hero_banner': HeroTitle,
+}
+
+---
+
+<Layout>
+    
+</Layout>

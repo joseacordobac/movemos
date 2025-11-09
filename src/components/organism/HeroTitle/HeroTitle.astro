@@ -1,0 +1,13 @@
+---
+import Title from "../../atoms/Title/Title.astro"
+import './heroTitle.css'
+
+const {data} = Astro.props
+---
+
+<section class="o-heroTitle">
+    <div class="o-heroTitle__conte">
+        <Title text={data.main_title} addClass="o-herotitle__title" fontSize="6rem" />
+        <p class="heroTitle__text">{data.sub_titulo}</p>
+    </div>
+</section>

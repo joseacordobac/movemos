@@ -1,0 +1,40 @@
+.a-chip__label {
+    background-color: #00000099;
+    padding: 5px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.35s ease-in;
+}
+
+.a-chip__label:hover{
+    background-color: var(--gold-main);
+}
+
+.a-chip__input{
+    display: none;
+}
+
+input[type="radio"]:checked + .a-chip__label{
+    background-color: var(--gold-main);
+}
+
+.a-chip--new{
+    position: relative;
+}
+
+.a-chip--new::after{
+    content: 'Nuevo';
+    position: absolute;
+    background-color: var(--gold-second);
+    color:#1E1E1E;
+    font-size: 0.6rem;
+    padding: 1px 4px;
+    border-radius: 10px;
+    top: -12px;
+    right: -11px;
+}
+
+
+
+

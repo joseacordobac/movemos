@@ -1,0 +1,13 @@
+.instagram-reel-clip-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; 
+    position: relative; 
+    margin: 0 auto;
+}
+
+.m-instagram-reel-container {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+  }

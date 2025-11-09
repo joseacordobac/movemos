@@ -1,0 +1,57 @@
+.m-team {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.m-team__team {
+    position: relative;
+    height: 290px;
+    overflow: hidden;
+}
+
+.m-team__img {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+    transition: 0.5s ease-in;
+}
+
+.m-team__img--front{
+    z-index: 1;
+    opacity: 1
+}
+
+.m-team:hover .m-team__img--front{
+    opacity: 0;
+}
+
+.m-team:hover .m-team__img--back{
+    opacity: 1;
+}
+
+.m-team__info {
+    background: var(--silver-gradient);
+    padding: 18px 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    transition: 0.4s;
+}
+
+.m-team:hover .m-team__info{
+    background: #FFDB43;
+    transition: 0.35s;
+    color: var(--main-color);
+}
+
+.m-team .a-title {
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+

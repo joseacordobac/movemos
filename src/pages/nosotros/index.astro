@@ -1,0 +1,29 @@
+---
+import AboutUs from '../../components/organism/AboutUs/AboutUs.astro';
+import HeroTitle from '../../components/organism/HeroTitle/HeroTitle.astro';
+import Layout from '../../layouts/Layout.astro';
+import {getPages} from '../../services/pages'
+
+const pages = await getPages('nosotros');
+const content =pages[0].fields.contenido_flexible
+
+const components = {
+  'title': HeroTitle,
+  'grid_us': AboutUs 
+}
+
+---
+
+<Layout>
+    {content.map((section: any) => {
+     
+      const { acf_fc_layout, data } = section;
+      const Component = components[acf_fc_layout as keyof typeof components];
+
+      if (!Component) {
+       console.warn(`⚠️ Componente desconocido: ${acf_fc_layout}`);
+        return <div style="color:red;">Componente no encontrado: {acf_fc_layout}</div>;
+      }
+      return <Component data={data} />;
+    })}
+  </Layout>

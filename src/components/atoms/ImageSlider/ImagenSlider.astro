@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets"
+import './imageslider.css'
+
+let {slideType, postId, imagesList, featuredImagen, totalImage=4, perPage = 1} = Astro.props
+
+---
+
+<div class={`a-imageslide ${slideType}`} data-per-page={perPage}>
+    <div class="swiper a-imageslide__swiper">
+        <div class="swiper-wrapper a-imageslide__wrapper">
+                <div class="a-imageslide__slide swiper-slide">
+                    <Image class="a-imageslide__element" 
+                        src={featuredImagen} 
+                        alt={"imagen rr autos"} 
+                        loading="lazy" width={300} 
+                        height={400} 
+                        transition:name={'product-id'+postId}
+                    />
+                </div>
+            {imagesList && imagesList.slice(0, totalImage).map((url: string, idx: number) => (
+                <div class="a-imageslide__slide swiper-slide">
+                    <Image class="a-imageslide__element" src={url} alt={"Imagen " + (idx + 1)} loading="lazy" width={300} height={400} />
+                </div>
+            ))}
+        </div>
+        <div class="a-imageslide__pagination">
+            <div class="a-imageslide__icon a-imageslide__prev"></div>
+            <div class="a-imageslide__icon a-imageslide__next"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    import Swiper from 'swiper';
+    import 'swiper/css';
+
+    const initImageSlider = () => {
+        const slidesPerView = document.querySelector('.a-imageslide')?.getAttribute('data-per-page')
+
+        const swiper = new Swiper('.a-imageslide__swiper', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '.a-imageslide__prev',
+                prevEl: '.a-imageslide__next',
+            },
+            spaceBetween: 10,
+            slidesPerView: slidesPerView ? Number(slidesPerView) : 1,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+        });
+    }
+
+    initImageSlider()
+    document.addEventListener("astro:after-swap", initImageSlider)
+
+</script>

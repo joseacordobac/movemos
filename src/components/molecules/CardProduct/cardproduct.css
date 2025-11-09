@@ -1,0 +1,58 @@
+.m-cardproduct__anchor {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.m-cardproduct__body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: 0.35s;
+    z-index: 1;
+}
+
+.m-cardproduct__body-title {
+    font-size: 1.8rem;
+    font-family: 'Poppins';
+    font-weight: 500;
+}
+
+.m-cardproduct__body-price{
+    font-size: 2.4rem;
+}
+
+.m-cardproduct:hover .m-cardproduct__body{
+    transform: translate(0px, -25px);
+}
+
+.m-cardproduct__footer {
+    display: flex;
+    gap: 15px;
+}
+
+.m-cardproducto__footer-info {
+    font-size: 14px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.m-cardproducto__footer-info::before{
+    content: '';
+    height: 24px;
+    width: 24px;
+    display: block;
+    background-image: url(./img/calendar.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.m-cardproducto__footer-info--km::before{
+    background-image: url(./img/speedometer.svg);
+}
+
+.m-cardproducto__footer-info--motor::before{
+    background-image: url(./img/engine.svg);
+}

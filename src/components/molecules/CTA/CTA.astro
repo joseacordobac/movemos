@@ -1,0 +1,25 @@
+---
+import Btn from "../../atoms/Btn/Btn.astro"
+import BtnWhatsApp from "../../atoms/BtnWhatsApp/BtnWhatsApp.astro"
+
+
+let {btnText, btnLink, data} = Astro.props
+
+btnText = btnText ? btnText : data.btn_text
+btnLink = btnLink ? btnLink : data.btn_link
+
+---
+
+<style>
+    .m-cta{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.2rem;
+    }
+</style>
+
+<div class="m-cta">
+    <Btn btnText={btnText} btnLink={btnLink} className="m-cta__btn" />
+    <BtnWhatsApp />
+</div>

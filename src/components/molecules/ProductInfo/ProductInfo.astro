@@ -1,0 +1,24 @@
+---
+import adapterOptionsBrands from './adapterInfoProduct'
+import ListItems from '../../atoms/ListItems/ListItems.astro'
+import './productinfo.css'
+
+
+const {info, characteristics, brands} = Astro.props
+const infoToList = adapterOptionsBrands(info, characteristics, brands)
+
+---
+
+<div class="m-productinfo">
+    {
+        Object.entries(infoToList).map(([key, item]: [string, any]) => {
+            const name = item.name;
+            const value = item.data;
+            if(!value) return;
+                
+            return (
+                <ListItems name={name} value={value} />
+            )
+        })
+    }
+</div>

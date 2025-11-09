@@ -1,0 +1,23 @@
+.m-brands {
+    width: 100%;
+}
+
+.m-brands__swiper-wrapper {
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0px;
+}
+
+.m-brands__slide{
+    margin: auto;
+}
+
+.m-brands__slide .m-brands__logo{
+    width: 100%;
+    transition: 0.35s ease-in-out;
+    cursor: pointer;
+}
+
+.m-brands__slide .m-brands__logo:hover{
+    transform: scale(1.5);
+}

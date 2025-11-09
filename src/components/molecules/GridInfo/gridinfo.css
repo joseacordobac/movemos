@@ -1,0 +1,38 @@
+.o-gridinfo__content{
+    gap: 0px;
+}
+
+.o-gridinfo__item{
+    display: flex;
+    align-items: center;
+    background-color: var(--black-v1);
+}
+
+.o-gridinfo__img {
+    width: 48%;
+    object-fit: cover;
+    height: 450px;
+    object-position: top;
+}
+
+.o-gridinfo__info h3 {
+    font-size: 2.3rem;
+}
+
+.o-gridinfo__info {
+    width: 52%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 40px;
+}
+
+.o-gridinfo__info p {
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.o-gridinfo__item:nth-child(even) {
+    flex-direction: row-reverse;
+}

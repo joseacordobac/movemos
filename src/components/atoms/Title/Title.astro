@@ -1,0 +1,7 @@
+---
+import './title.css'
+
+const {text, addClass, fontSize} = Astro.props
+---
+
+<div class={`a-title ${addClass}`} style={`font-size: ${fontSize}`} set:html={text}>

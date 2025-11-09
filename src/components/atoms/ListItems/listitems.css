@@ -1,0 +1,36 @@
+.a-listitems {
+    background: var(--third-color);
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    gap: 10px;
+}
+
+.a-listitems {
+    background: var(--third-color);
+}
+
+.a-listitems__icon{
+    width: 24px;
+    height: 24px;
+}
+
+.a-listitems__info-title {
+    font-family: "Inter", sans-serif;
+    color: #919191;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.a-listitems__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.a-listitems__info-value {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+

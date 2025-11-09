@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+*{
+font-family: "Work Sans", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    line-height: 1.1;
+}
+
+html{
+    font-size: 10px;
+    background-color: var(--main-color);
+}
+
+main{
+    padding-top: 100px;
+    color: var(--second-color);
+    overflow: hidden;
+}
+
+:root {
+    --main-color: #000000;
+    --second-color: #FFFFFF;
+    --third-color: #0D0D0D;
+    --four-color: #F2BA00;
+
+    --black-v1: #1A1A1A;
+    --max-wide: 90%;
+    --max-medium: 85%;
+    --max-regular: 80%;
+    --max-tiny: 70%;
+    --max-small:60%;
+
+    --font-small: 1rem;
+    --font-regular: 1.4rem;
+    --font-normal: 1.6rem;
+    --font-title: 2.2rem;
+    --font-title-regular: 2.8rem;
+    --font-title-big: 3.5rem;
+    --font-huge: 4.8rem;
+
+    --box-shadow-regular: 0px 
+
+}
+
+h1, h2, h3, h4{
+    font-family: "Work Sans", sans-serif;
+    font-weight: 100;
+}
+
+p, ul, li, span, a, button, input, textarea{
+    font-size: var(--font-normal);
+    line-height: 1.1;
+}
+
+strong{
+    font-weight: 600;
+}
+
+.regular-content{
+    max-width: var(--max-regular);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}

@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import Love from '../../../assets/icons/love.svg'
+import Logo from "../../atoms/logo/Logo.astro";
+import BtnWhatsApp from "../../atoms/BtnWhatsApp/BtnWhatsApp.astro";
+import ContactForm from "../../molecules/FormContact/FormContact.astro";
+import {getOptionPage} from '../../../services/optionPageServices'
+import './footer.css'
+
+const options = await getOptionPage()
+const icon = options.general_options.icono
+const social = options.general_options.social
+
+---
+
+<footer class="o-footer">
+  <section class="o-footer__content">
+    <div class="o-footer__icon">
+      <Image class={"o-footer__icon-img"} src={icon} alt="icono movemos marcas" width={300} height={300} />
+    <div class="o-footer__contact-form">
+      <ContactForm />
+    </div>
+    </div>
+  </section>
+  <section class="o-footer__bottom">
+    <div class="o-footer__bottom-content">
+      <Logo />
+      <BtnWhatsApp />
+      <div class="o-footer__social">
+        {
+          social.map((item: any) => {
+            return(
+              <a href={item.link} class="o-footer__social-icon" target="_blank" rel="noopener noreferrer">
+                <Image class={"o-footer__social-icon-img"} src={item.icono} alt='icon social' width={30} height={30} />
+              </a>
+            )
+          })
+        }
+        <div class="o-footer__done">
+          <Image class={"o-footer__done-img"} src={Love} alt='icon social' width={30} height={30} />
+          <span class="o-footer__done-text">Hecho en Medellín</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>

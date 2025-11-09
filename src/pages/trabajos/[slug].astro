@@ -1,0 +1,105 @@
+---
+import "@wordpress/block-library/build-style/style.css";
+import "@wordpress/block-library/build-style/theme.css";
+import "@wordpress/block-library/build-style/common.css";
+import Layout from '../../layouts/Layout.astro';
+import Title from '../../components/atoms/Title/Title.astro';
+import Btn from "../../components/atoms/Btn/Btn.astro";
+import BtnWhatsApp from "../../components/atoms/BtnWhatsApp/BtnWhatsApp.astro";
+import { Image } from "astro:assets";
+import {getListPost} from '../../services/posts'
+import {getAllSlugs} from '../../services/allSlugs';
+
+import './trabajos.css';
+
+interface Params {
+  slug: string;
+}
+
+const slug: string = (Astro.params as Params).slug;
+const parts = slug.split("/");
+const resultSlug = parts.pop()
+
+const posts = await getListPost('trabajos', 1,resultSlug );
+const post = posts[0];
+
+export async function getStaticPaths() {
+  const allSlugs = await getAllSlugs('trabajos');
+  return allSlugs.map((slug: any) => ({ params: { slug }}));
+}
+
+const data = post.fields;
+
+---
+
+<Layout>
+  <div class="trabajos">
+    <div class="trabajos-content">
+        <div class="trabajos-title">
+            <Title text={data.project_name} fontSize="2rem" />
+            <p class="trabajos-title__descriptio italic">{data.description}</p>
+        </div>
+        <div class="trabajos-gallery pinterest-grid">
+            {
+                data.gallery.map((image: any, index: number) => {
+                    const animation = index === 0 ? post.ID + '-animate' : '' 
+                    return(
+                        <div class="trabajo-gallery__img pinterest-grid-item" data-index={index}>
+                            <Image 
+                                class="pinterest-grid-img trabajo-gallery__img-src" 
+                                src={image} 
+                                alt={data.project_name} 
+                                width={200} 
+                                height={400} 
+                                transition:name={animation}
+                            />
+                        </div>
+                    )
+                })
+            }
+        </div>
+        <div class="trabajos-info" set:html={post.content} />
+        <div class="trabajos__btn">
+            <Btn btnText={data.btn_text} btnLink={data.btn_link} className="o-projectgrid__btn" />
+            <BtnWhatsApp />
+        </div>
+    </div>
+  </div>
+</Layout>
+
+
+<script>
+
+function getSizeClass(aspectRatio: number): string {
+    
+    if (aspectRatio >= 1.2) return 'small';      // Imagen horizontal/cuadrada
+    if (aspectRatio >= 0.8) return 'medium';     // Imagen casi cuadrada
+    if (aspectRatio >= 0.5) return 'large';      // Imagen vertical
+    return 'xlarge';                              // Imagen muy vertical
+  }
+
+const initSizeImg = () => {
+    const gridItems = document.querySelectorAll('.pinterest-grid-item');
+    
+    gridItems.forEach((item) => {
+      const img = item.querySelector('.pinterest-grid-img') as HTMLImageElement;
+      
+      if (img) {
+        if (img.complete && img.naturalHeight > 0) {
+          const aspectRatio = img.naturalWidth / img.naturalHeight;
+          const sizeClass = getSizeClass(aspectRatio);
+          item.classList.add(sizeClass);
+        } else {
+          img.addEventListener('load', () => {
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            const sizeClass = getSizeClass(aspectRatio);
+            item.classList.add(sizeClass);
+          });
+        }
+      }
+    });
+};
+
+initSizeImg();
+document.addEventListener("astro:after-swap", initSizeImg)
+</script>

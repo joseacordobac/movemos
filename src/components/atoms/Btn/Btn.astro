@@ -1,0 +1,14 @@
+---
+import './btn.css'
+
+interface BtnProps {
+    btnText: string;
+    btnLink: string;
+    className?: 'a-btn--gradient' | 'a-btn--rounded' | 'a-btn--normal' | 'a-btn--transparent' | 'a-btn--white' | 'a-btn--black';
+    target?: string;
+}
+
+const {btnText = 'Mira todos los proyectos', btnLink, className, target} = Astro.props as BtnProps;
+---
+
+<a href={btnLink} target={target} class={"a-btn " + className }>{btnText}</a>

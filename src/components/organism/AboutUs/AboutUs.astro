@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets"
+import BtnWhatsApp from "../../atoms/BtnWhatsApp/BtnWhatsApp.astro"
+import './aboutus.css'
+
+const {data} = Astro.props
+---
+
+<section class="o-aboutus">
+    <div class="o-aboutus__content">
+        <div class="o-aboutus_mainimg">
+            <Image class="o-aboutus__mainimg-src" src={data.main_img} alt={'Movemos marcas'} width={300} height={500}  />
+        </div>
+        <div class="o-aboutus__text">
+            <div class="aboutus__text-info" set:html={data.description} />
+            <BtnWhatsApp />
+        </div>
+        <div class="o-aboutus__secondimg">
+            <Image class="o-aboutus__secondimg-src" src={data.imagen_secundaria} alt={'Movemos marcas'} width={300} height={500}  />
+        </div>
+    </div>
+</section>

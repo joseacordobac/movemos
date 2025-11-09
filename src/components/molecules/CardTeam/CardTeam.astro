@@ -1,0 +1,19 @@
+---
+import { Image } from "astro:assets"
+import Title from "../../atoms/Title/Title.astro"
+import './cardteam.css'
+
+const {data} = Astro.props
+
+---
+
+<div class="m-team">
+    <header class="m-team__team">
+        <Image class='m-team__img m-team__img--front' src={data.foto} alt={data.Name} width={200} height={200} />
+        <Image class='m-team__img m-team__img--back' src={data.foto_dos} alt={data.Name} width={200} height={200} />
+    </header>
+    <div class="m-team__info">
+        <p class="m-team__info-name">{data.Name}</p>
+        <Title text={data.position}fontSize={'1.6rem'} />
+    </div>
+</div>

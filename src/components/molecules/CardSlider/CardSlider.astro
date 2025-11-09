@@ -1,0 +1,47 @@
+---
+import CardProduct from '../CardProduct/CardProduct.astro'
+import {getListPost} from '../../../services/posts'
+import './cardslider.css'
+
+const {listType} = Astro.props
+let data = await getListPost(listType, 3)
+
+const catalogoName = listType === 'importados' ? 'importacion-rr' : listType
+
+---
+
+<div class="m-cardSlider">
+    <div class="swiper m-cardslider__swiper">
+        <div class="swiper-wrapper m-cardslider__wrapper">
+            {
+                data.length &&
+                data.map((item: any, idx: number) => (
+                    <div class="swiper-slide m-cardslider__slide">
+                        <CardProduct data={item} type={listType}/>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    import Swiper from 'swiper';
+    import 'swiper/css';
+    
+    const initCardSlider = () => {
+        new Swiper('.m-cardslider__swiper', {
+            loop: true,
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: '.m-cardslider__pagination',
+                clickable: true,
+            }
+        });
+    }
+
+    initCardSlider()
+    document.addEventListener("astro:after-swap", initCardSlider)
+     
+</script>

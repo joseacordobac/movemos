@@ -1,0 +1,33 @@
+---
+import Btn from '../../atoms/Btn/Btn.astro'
+import {getOptionPage} from '../../../services/optionPageServices'
+import './adviserbtns.css'
+
+const dataOptions = await getOptionPage()
+const {objectKey, productUrl=''} = Astro.props
+
+const dataOrigin = dataOptions[objectKey]
+const whatsAppLink = `https://wa.me/${dataOrigin.whatsapp_number}/?text=${dataOrigin.default_message} ${productUrl}`;
+---
+
+<div class="m-adviserbtns">
+    <h4 class="m-importados__asesor-title">{dataOrigin.title}</h4>
+    <div class="m-portados__asesor-info" set:html={dataOrigin.description} />
+    <Btn btnText={'WHATSAPP'} btnLink={whatsAppLink} className="a-btn--whatsapp-product text-center" target = "_blank" />
+    <Btn btnText={dataOrigin.btn_quotation} btnLink="#" className="a-btn--white text-center" />
+</div>
+
+<script>
+    const getCurrenUrl = () => {
+        const url = window.location.href
+        const getWhatssApp = document.querySelector('.a-btn--whatsapp-product')
+        if(!getWhatssApp) return
+        let getHref = getWhatssApp.getAttribute('href')
+        getHref = getHref + url
+        getWhatssApp.setAttribute('href', getHref)
+    }
+
+    getCurrenUrl()
+    document.addEventListener("astro:after-swap", getCurrenUrl)
+
+</script>

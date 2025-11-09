@@ -1,0 +1,52 @@
+---
+import Title from "../../atoms/Title/Title.astro"
+import { Image } from "astro:assets"
+import './ourservices.css'
+
+const {data} = Astro.props
+---
+
+<section class="hero">
+    <div class="hero__line"></div>
+    <h1 class="hero__title">Lo que hacemos por ti</h1>
+</section>
+<section class="o-ourservices">
+    <div class="o-ourservices__content">
+        {
+            data.map((info:any, index:number) => {
+                
+                return(
+                    <div class="o-ourservices-item">
+                        <div class="o-ourservices-item__brand">
+                            <Title text={info.services_name} addClass={'o-ourservices-item__title'} fontSize={'2.4rem'} /> 
+                            <div class="o-ourservices-item__img">
+                                <Image 
+                                    class="o-ourservices-item__imgsrc" 
+                                    src={info.img_services} 
+                                    alt={info.services_name} 
+                                    width={200}
+                                    height={400}
+                                />
+                            </div>             
+                        </div>
+                        <div class="o-ourservices-item__services">
+                            <div class="o-ourservices-item__desc" set:html={info.service_description} />
+                            <div class="o-ourservices-item__list">
+                                {
+                                    info.service_data.map((item:any, index:number) => {
+                                        return(
+                                            <div class="o-ourservices-item__list-layout">
+                                                <h3 class="o-ourservices-item__list-item o-ourservices-item__list--title">{item.title}</h3>
+                                                <h4 class="o-ourservices-item__list-item o-ourservices-item__list--info">{item.information}</h4>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                )
+            })
+        }
+    </div>
+</section>

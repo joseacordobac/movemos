@@ -1,0 +1,8 @@
+---
+import './chip.css'
+const {text, isNew = false, name, value, checked = false} = Astro.props
+---
+<div class={"a-chip" + (isNew ? " a-chip--new" : "")}>
+    <input id={value} class="a-chip__input" type="radio" name={name} value={value} checked={checked} />
+    <label for={value} class="a-chip__label">{text}</label>
+</div>

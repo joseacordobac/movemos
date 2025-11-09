@@ -1,0 +1,41 @@
+---
+import {getListPost} from '../../../services/posts'
+import Btn from '../../atoms/Btn/Btn.astro'
+import BtnWhatsApp from '../../atoms/BtnWhatsApp/BtnWhatsApp.astro'
+import { Image } from 'astro:assets'
+import  './projectgrid.css'
+import { undefined } from 'astro:schema'
+
+const {data} = Astro.props
+const posts = await getListPost('trabajos', 11)
+
+---
+
+<section class="o-projectgrid">
+    <div class="o-projectgrid__content">
+        {
+            posts.map((element:any) => {
+                const getgallery = element?.fields?.gallery
+                const img = getgallery ? getgallery[0] : element?.featured_image
+
+                return(
+                    <a href={'trabajos/'+element.slug} class="o-projectgrid__item">
+                        <Image 
+                            class="o-projectgrid__image" 
+                            src={img} 
+                            alt={element.title} 
+                            width={300} 
+                            height={500} 
+                            loading="lazy"
+                            transition:name={element.ID + '-animate'}
+                        />
+                    </a>
+                )
+            })
+        }
+    </div>
+    <div class="o-projectgrid__cta">
+        <Btn btnText={data.btn_text} btnLink={data.btn_link} className="o-projectgrid__btn" />
+        <BtnWhatsApp />
+    </div>
+</section>

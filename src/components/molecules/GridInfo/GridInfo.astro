@@ -1,0 +1,20 @@
+---
+import { Image } from "astro:assets"
+import './gridinfo.css'
+
+const {data} = Astro.props
+
+---
+
+<section class="o-gridinfo">
+    <div class="o-gridinfo__content regular-content">
+        {data.map((item: any) => {
+            return (
+                <div class="o-gridinfo__item">
+                    <Image src={item.imagen} width={400} height={200} class="o-gridinfo__img" alt="Rr autos" />
+                    <div class="o-gridinfo__info" set:html={item.description} />
+                </div>
+            )
+        })}
+    </div>
+</section>

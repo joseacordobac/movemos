@@ -1,0 +1,49 @@
+---
+import './instagramreel.css'
+
+const { instagramLinks } = Astro.props;
+
+function obtenerIdReel(url:string) {
+  try {
+    if (typeof url !== 'string' || !url.startsWith('http')) {
+        return null;
+    }
+    const urlObj = new URL(url);
+    const pathname = urlObj.pathname;
+    const idReel = pathname.split('/').filter(parte => parte.length > 0)[1]; 
+    return idReel;
+  } catch (error) {
+    return null;
+  }
+}
+
+const BASE_URL = 'https://www.instagram.com/reel/';
+
+const reelId = obtenerIdReel(instagramLinks); 
+const instagramScript = {
+  src: 'https://www.instagram.com/embed.js',
+  async: true,
+};
+---
+
+<div class="instagram-reel-clip-wrapper">
+    {reelId && (
+      <blockquote
+        class="instagram-media"
+        data-instgrm-permalink={`${BASE_URL}${reelId}/`}
+        data-instgrm-version="14"
+        style=" margin: 0; width:100%"
+      >
+      </blockquote>
+    )}
+  </div>
+  
+  <script {...instagramScript}></script>
+
+
+<script>
+    const reloadPage = () => {
+        window.location.reload();
+    }
+    document.addEventListener("astro:after-swap", reloadPage)
+</script>

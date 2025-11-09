@@ -1,0 +1,24 @@
+---
+const {name, value} = Astro.props
+import './listitems.css'
+
+
+const slugName = name
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')   
+  .replace(/ñ/g, 'n')                
+  .replace(/\s+/g, '-')              
+  .replace(/[^a-z0-9\-]/g, '');      
+
+  
+
+---
+
+<div class="a-listitems">
+    <div class="a-listitems__icon" style={{"background-image": "url('../../../../public/icons/" + slugName + ".svg')"}}></div>
+    <div class="a-listitems__info">
+        <h3 class="a-listitems__info-title">{name}</h3>
+        <h4 class="a-listitems__info-value">{value}</h4>
+    </div>
+</div>
