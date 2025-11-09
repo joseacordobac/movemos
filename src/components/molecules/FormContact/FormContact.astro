@@ -30,11 +30,11 @@ import './formcontact.css'
 <script>
 
 const sendForm = () => {
-    const form = document.getElementById('contactForm');
+    const form = document.getElementById('contactForm') as HTMLFormElement;
     if(!form) return;
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
-        
+
         const formData = new FormData(form);
         const data = {
             name: formData.get('name'),
