@@ -47,34 +47,6 @@
     }
 
     .o-header__content{
-        gap: 5px;
-        display: grid;
-        grid-template-columns: 70% 17% 5%;
-    }
-
-    .o-header__nav {
-        grid-column: 3 / 4;
-    }
-
-    .o-header__cta{
-        gap: 7px;
-        grid-column: 2 / 3;
-        grid-row: 1;
-    }
-
-    .o-header.o-header--intop{
-        width: 100%;
-    }
-
-    .o-header--white:not(.o-header--intop) .m-nav-item__route {
-        color:black;
-    }
-
-    .o-header .a-button {
-        position: fixed;
-        bottom: 0px;
-        width: 100%;
-        left: 0px;
-        border-radius: 12px 12px 0px 0px;
+        display: flex;
     }
 }

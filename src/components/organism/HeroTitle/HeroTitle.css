@@ -8,3 +8,9 @@
     font-size: 2.4rem;
     font-style: italic;
 }
+
+@media(max-width: 780px){
+    .o-herotitle__title{
+        font-size: 4rem !important;
+    }
+}

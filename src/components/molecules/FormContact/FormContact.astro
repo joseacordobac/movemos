@@ -1,0 +1,69 @@
+---
+import Title from "../../atoms/Title/Title.astro"
+import './formcontact.css'
+---
+
+<div class="m-formcontact">
+    <div class="m-formcontact__titles">
+        <Title text={'<h3>CONTÁCTANOS</h3>'} addClass="m-formcontact-title" fontSize="4rem" />
+        <p class="m-formcontact__par">Estamos listos para potenciar tu proyecto</p>
+    </div>
+
+    <form id="contactForm" class="m-formcontact__form">
+        <div class="form-group">
+            <input class="m-formcontact__form-input" type="text" id="name" name="name" placeholder="Nombre:" required>
+        </div>
+        <div class="form-group">
+            <input class="m-formcontact__form-input" type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input class="m-formcontact__form-input" type="tel" id="cellphone" name="cellphone" placeholder="Celular" required>
+        </div>
+        <div class="form-group">
+            <input class="m-formcontact__form-input" type="text" id="company" name="company" placeholder="Nombre de la empresa" required>
+        </div>
+        <button type="submit" class="m-formcontact__form-submit">Enviar</button>
+    </form>
+</div>
+
+
+<script>
+
+const sendForm = () => {
+    const form = document.getElementById('contactForm');
+    if(!form) return;
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            cellphone: formData.get('cellphone'),
+            company: formData.get('company')
+        };
+
+        try {
+            const response = await fetch('http://movemo-marcas.test/wp-json/headless-api/v1/form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                form.reset();
+            } else {
+                alert('Error al enviar el formulario');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error al enviar el formulario');
+        }
+    });
+}
+
+sendForm();
+document.addEventListener("astro:after-swap", sendForm);
+</script>

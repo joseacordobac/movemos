@@ -50,3 +50,18 @@
     object-fit: cover;
     object-position: top;
 }
+
+@media(max-width: 780px){
+    .o-aboutus__content{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .o-aboutus_mainimg{
+        height: 200px;
+    }
+
+    .o-aboutus__secondimg {
+        height: 380px;
+    }
+}

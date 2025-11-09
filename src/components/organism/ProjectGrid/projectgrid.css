@@ -66,3 +66,20 @@
     align-items: center;
 }
 
+@media(max-width: 780px){
+    .o-projectgrid__cta{
+        flex-direction: column;
+        gap: 10px;;
+    }
+
+    .o-projectgrid__content{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .o-projectgrid__item{
+        width: 48%;
+    }
+
+
+}

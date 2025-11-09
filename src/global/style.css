@@ -65,3 +65,17 @@ strong{
     flex-direction: column;
     gap: 22px;
 }
+
+@media(max-width: 780px){
+    .regular-content{
+        max-width: var(--max-medium);
+    }
+
+    :root {
+        --max-wide: 90%;
+        --max-medium: 85%;
+        --max-regular: 80%;
+        --max-tiny: 80%;
+        --max-small:80%;
+    }
+}

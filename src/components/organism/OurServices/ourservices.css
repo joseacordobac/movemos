@@ -72,3 +72,19 @@
 .o-ourservices-item__list--title {
     font-weight: 600;
 }
+
+@media(max-width: 780px){
+    .hero {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .o-ourservices-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .o-ourservices-item__list-layout{
+        gap:30px;
+    }
+}
